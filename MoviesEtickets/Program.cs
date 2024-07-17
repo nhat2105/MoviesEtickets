@@ -30,7 +30,15 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-AppDbInitializer.Seed(app);
-
+// Seed the database
+try
+{
+    AppDbInitializer.Seed(app);
+}
+catch (Exception ex)
+{
+    var logger = app.Services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "An error occurred seeding the DB.");
+}
 app.Run();
 

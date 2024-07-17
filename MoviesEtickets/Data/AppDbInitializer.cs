@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MoviesEtickets.Controllers.Data.Enums;
+using MoviesEtickets.Data.Enums;
 using MoviesEtickets.Models;
 
 namespace MoviesEtickets.Data
@@ -12,6 +12,8 @@ namespace MoviesEtickets.Data
             {
                 var context = serviceScope.ServiceProvider.GetService<AppDbContext>();
 
+
+                context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
                 //Cinema
@@ -153,41 +155,40 @@ namespace MoviesEtickets.Data
                         new Movie()
                         {
                             Id = 1,
-                            Name = "Life",
-                            Description = "This is the Life movie description",
+                            Name = "Forrest Gump",
+                            Description = "Life is like a box of chocolates, you don't know what you're gonna get. " +
+                            "Just my favorite film ever",
                             Price = 39.50,
                             ImageURL = "http://dotnethow.net/images/movies/movie-3.jpeg",
                             Released = DateTime.Now.AddDays(-10),
                             Category = MovieCategory.Documentary,
                             CinemaId = 3,
                             ProducerId = 3,
-                           
                         },
                         new Movie()
                         {
                             Id = 2,
-                            Name = "The Shawshank Redemption",
-                            Description = "This is the Shawshank Redemption description",
+                            Name = "Mulholland Drive",
+                            Description = "A young aspiring actress who meets an amnesia woman upon her arrival to LA." +
+                            "A completely game changer. ",
                             Price = 29.50,
                             ImageURL = "http://dotnethow.net/images/movies/movie-1.jpeg",
                             Released = DateTime.Now,
                             Category = MovieCategory.Action,
                             CinemaId = 1,
                             ProducerId = 1,
-                            
                         },
                         new Movie()
                         {
                             Id = 3,
-                            Name = "Ghost",
-                            Description = "This is the Ghost movie description",
+                            Name = "Vertigo",
+                            Description = "Voyeurism - falling in love with something not real. This is what it is about. ",
                             Price = 39.50,
                             ImageURL = "http://dotnethow.net/images/movies/movie-4.jpeg",
                             Released = DateTime.Now,
                             Category = MovieCategory.Horror,
                             CinemaId = 4,
                             ProducerId = 4,
-                            
                         },
                         new Movie()
                         {
@@ -200,7 +201,6 @@ namespace MoviesEtickets.Data
                             Category = MovieCategory.Documentary,
                             CinemaId = 1,
                             ProducerId = 2,
-                            
                         },
                         new Movie()
                         {
@@ -213,7 +213,6 @@ namespace MoviesEtickets.Data
                             Category = MovieCategory.Documentary,
                             CinemaId = 1,
                             ProducerId = 3,
-                           
                         },
                         new Movie()
                         {
@@ -229,7 +228,6 @@ namespace MoviesEtickets.Data
                         }
                     });
                     context.SaveChanges();
-                
                 }
 
                 //Actors & Movies
@@ -237,30 +235,19 @@ namespace MoviesEtickets.Data
                 {
                     context.Actors_Movies.AddRange(new List<Actor_Movie>()
                     {
-                        new Actor_Movie() { ActorId = 1, MovieId = 1 },
-                        new Actor_Movie() { ActorId = 3, MovieId = 1 },
-                        new Actor_Movie() { ActorId = 1, MovieId = 2 },
-                        new Actor_Movie() { ActorId = 4, MovieId = 2 },
-                        new Actor_Movie() { ActorId = 1, MovieId = 3 },
-                        new Actor_Movie() { ActorId = 2, MovieId = 3 },
-                        new Actor_Movie() { ActorId = 5, MovieId = 3 },
-                        new Actor_Movie() { ActorId = 2, MovieId = 4 },
-                        new Actor_Movie() { ActorId = 3, MovieId = 4 },
-                        new Actor_Movie() { ActorId = 4, MovieId = 4 },
-                        new Actor_Movie() { ActorId = 2, MovieId = 5 },
-                        new Actor_Movie() { ActorId = 3, MovieId = 5 },
+                        new Actor_Movie() { ActorId = 1, MovieId = 4 },
+                        new Actor_Movie() { ActorId = 1, MovieId = 5 },
+                        new Actor_Movie() { ActorId = 2, MovieId = 6 },
+                        new Actor_Movie() { ActorId = 2, MovieId = 7 },
+                        new Actor_Movie() { ActorId = 3, MovieId = 8 },
+                        new Actor_Movie() { ActorId = 3, MovieId = 3 },
                         new Actor_Movie() { ActorId = 4, MovieId = 5 },
-                        new Actor_Movie() { ActorId = 5, MovieId = 5 },
-                        new Actor_Movie() { ActorId = 3, MovieId = 6 },
-                        new Actor_Movie() { ActorId = 4, MovieId = 6 },
                         new Actor_Movie() { ActorId = 5, MovieId = 6 },
                     });
 
                     context.SaveChanges();
                 }
             }
-
         }
-
     }
 }

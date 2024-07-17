@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MoviesEtickets.Controllers.Data.Enums;
+using MoviesEtickets.Data.Enums;
 
 namespace MoviesEtickets.Models
 {

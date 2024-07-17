@@ -12,10 +12,17 @@ namespace MoviesEtickets.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Actor_Movie>().HasKey(am => new {am.ActorId, am.MovieId});
+            modelBuilder.Entity<Actor_Movie>().
+                HasKey(am => new {am.ActorId, am.MovieId});
 
-            modelBuilder.Entity<Actor_Movie>().HasOne(m => m.Actor).WithMany(a => a.Actors_Movies).HasForeignKey(m => m.ActorId);
-            modelBuilder.Entity<Actor_Movie>().HasOne(m => m.Movie).WithMany(a => a.Actors_Movies).HasForeignKey(m => m.MovieId);
+            modelBuilder.Entity<Actor_Movie>()
+                .HasOne(n => n.Actor)
+                .WithMany(a => a.Actors_Movies)
+                .HasForeignKey(n => n.ActorId);
+            modelBuilder.Entity<Actor_Movie>()
+                .HasOne(m => m.Movie)
+                .WithMany(b => b.Actors_Movies)
+                .HasForeignKey(m => m.MovieId);
 
 
             base.OnModelCreating(modelBuilder);
